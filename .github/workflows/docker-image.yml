@@ -16,4 +16,4 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: docker build -f Checkers\Dockerfile --force-rm -t pollutionmonster/checkers:$(date +%s)
-      working-directory: ./Checkersy
+      working-directory: Checkers
