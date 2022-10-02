@@ -15,5 +15,5 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build -f ./Checkers/Dockerfile --force-rm -t checkers --label "com.microsoft.created-by=visual-studio" --label "com.microsoft.visual-studio.project-name=Checkers" ./Checkers
+      run: docker build -f "Checkers/Dockerfile" --force-rm -t checkers --label "com.microsoft.created-by=visual-studio" --label "com.microsoft.visual-studio.project-name=Checkers" "Checkers"
       working-directory: ./Checkers
