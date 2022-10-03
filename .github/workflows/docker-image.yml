@@ -17,7 +17,7 @@ jobs:
       run: export vtag=$(date +%Y-%m-%d)
       
     - name: Print Version
-      run: echo "Here's some random text to echo"
+      run: echo "Here's some random text to echo $vtag"
     
 #    - name: Docker Login
 #      # You may pin to the exact commit or the version.
