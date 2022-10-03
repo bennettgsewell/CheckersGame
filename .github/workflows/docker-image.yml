@@ -7,19 +7,20 @@ on:
     branches: [ "main" ]
 
 jobs:
+  generate-tag:
+    runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.step1.outputs.test }}
+    steps:
+      - id: step1
+        run: echo "::set-output name=VTAG::$(date +%Y-%m-%d)"
+
   build:
     runs-on: ubuntu-latest
-    
-    outputs:
-      output1: ${{ steps.step1.outputs.VTAG }}
-    
+    needs: generate-tag
     steps:
-    
-    - name: Set Version
-      run: echo ::set-output name=VTAG::$(date +%Y-%m-%d)
-
     - name: Print Version
-      run: echo ${{ build.outputs.output1 }}
+      run: echo ${{ needs.generate-tag.outputs.output1 }}
     
 #    - name: Docker Login
 #      # You may pin to the exact commit or the version.
