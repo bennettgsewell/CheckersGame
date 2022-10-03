@@ -19,7 +19,7 @@ jobs:
       run: echo ::set-output name=VTAG::$(date +%Y-%m-%d)
 
     - name: Print Version
-      run: echo ${{ outputs.output1 }}
+      run: echo ${{ build.outputs.output1 }}
     
 #    - name: Docker Login
 #      # You may pin to the exact commit or the version.
