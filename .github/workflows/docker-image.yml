@@ -9,13 +9,17 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    outputs:
+      output1: ${{ steps.step1.outputs.VTAG }}
+    
     steps:
     
     - name: Set Version
-      run: date +%Y-%m-%d
+      run: echo ::set-output name=VTAG::$(date +%Y-%m-%d)
 
     - name: Print Version
-      run: echo ${{ env.VTAG }}
+      run: echo ${{ outputs.output1 }}
     
 #    - name: Docker Login
 #      # You may pin to the exact commit or the version.
