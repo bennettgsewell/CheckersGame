@@ -11,8 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      # Generate the version tag as todays date.
     - name: Set Version Tag
-      run: echo "$(date +%Y-%m-%d)"
+      run: echo "vtag=$(date +%Y-%m-%d)" >> $GITHUB_ENV
     
     - name: Print Version
       run: echo ${{ env.vtag }}
