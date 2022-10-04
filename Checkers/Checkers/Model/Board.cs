@@ -6,35 +6,37 @@ namespace Checkers.Model
 {
     public class Board
     {
-        public Player[,] _map;
+        public Player[][] _map;
 
-        public int Width => _map.GetLength(0);
-        public int Height => _map.GetLength(1);
+        public int Width => _map[0].Length;
+        public int Height => _map.Length;
 
         private static readonly string[] defaultBoard = new[]
         {
-            "______0______",
-            "_____00_____",
-            "_____000_____",
-            "____0000____",
+            "______0",
+            "_____00",
+            "_____000",
+            "____0000",
             "0000000000000",
             "000000000000",
-            "_00000000000_",
-            "_0000000000_",
-            "__000000000__",
-            "_0000000000_",
-            "_00000000000_",
+            "_00000000000",
+            "_0000000000",
+            "__000000000",
+            "_0000000000",
+            "_00000000000",
             "000000000000",
             "0000000000000",
-            "____0000____",
-            "_____000_____",
-            "_____00_____",
-            "______0______",
+            "____0000",
+            "_____000",
+            "_____00",
+            "______0",
         };
 
         public Board()
         {
-            _map = new Player[13, 17];
+            _map = new Player[17][];
+            for (int y = 0; y < _map.Length; y++)
+                _map[y] = new Player[13];
 
             for (int y = 0; y < Height; y++)
             {
@@ -46,18 +48,21 @@ namespace Checkers.Model
                 {
                     int c = lineReader.Read();
 
-                    if(c == -1)
+                    if (c == -1)
                     {
-                        _map[x, y] = Player.Blocked;
+                        SetPlayer(x, y, Player.Blocked);
                         continue;
                     }
 
                     char spot = (char)c;
 
-                    _map[x, y] = spot == '0' ? Player.Empty : Player.Blocked;
+                    SetPlayer(x, y, spot == '0' ? Player.Empty : Player.Blocked);
                 }
             }
         }
+
+        private void SetPlayer(int x, int y, Player p) => _map[y][x] = p;
+        private Player GetPlayer(int x, int y) => _map[y][x];
 
         private bool IsShiftedRow(int y) => y % 2 == 1;
 
@@ -72,7 +77,7 @@ namespace Checkers.Model
 
                 for (int x = 0; x < Width; x++)
                 {
-                    sb.Append(_map[x, y] == Player.Blocked ? '_' : 'O');
+                    sb.Append(GetPlayer(x, y) == Player.Blocked ? '_' : 'O');
                     sb.Append(' ');
                 }
                 sb.AppendLine();
