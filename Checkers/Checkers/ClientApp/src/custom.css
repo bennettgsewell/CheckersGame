@@ -12,3 +12,17 @@ code {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+
+.tile {
+    width: 10mm;
+    height: 10mm;
+}
+
+.tile + .tile {
+    margin-left: 2mm;
+}
+
+.map {
+    min-width: 165mm;
+    text-align: center;
+}
