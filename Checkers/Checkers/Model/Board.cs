@@ -62,6 +62,7 @@ namespace Checkers.Model
         }
 
         private void SetPlayer(int x, int y, Player p) => _map[y][x] = p;
+
         private Player GetPlayer(int x, int y) => _map[y][x];
 
         private bool IsShiftedRow(int y) => y % 2 == 1;
